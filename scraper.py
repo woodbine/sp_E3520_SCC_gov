@@ -27,7 +27,7 @@ block = soup.find('div',{'class':'entry-content'})
 links = block.findAll('a', href=True)
 
 for link in links:
-	url = 'http://www.suffolk.gov.uk' + link['href']
+	url = 'http://www.suffolk.gov.uk/' + link['href']
 	url = url.replace(' ','%20')
 	if '.csv' in url:
 		title = link.encode_contents(formatter='html').replace('&nbsp;',' ') #  gets rid of erroneous &nbsp; chars
