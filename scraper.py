@@ -28,6 +28,7 @@ links = block.findAll('a', href=True)
 
 for link in links:
 	url = 'http://www.suffolk.gov.uk' + link['href']
+	url = replace(' ','%20')
 	if '.csv' in url:
 		title = link.encode_contents(formatter='html').replace('&nbsp;',' ') #  gets rid of erroneous &nbsp; chars
 		title = title.upper().strip()
