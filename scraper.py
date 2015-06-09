@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 # Set up variables
 entity_id = "E3520_SCC_gov"
-url = "http://www.suffolk.gov.uk/your-council/finance/council-data-and-transparency/council-expenditure-and-contracts/expenditure-exceeding-250/"
+url = "http://www.suffolk.gov.uk/council-and-democracy/council-data-and-transparency/council-expenditure-and-contracts/expenditure-exceeding-250/"
 
 # Set up functions
 def convert_mth_strings ( mth_string ):
@@ -23,7 +23,7 @@ html = urllib2.urlopen(url)
 soup = BeautifulSoup(html)
 
 # find all entries with the required class
-block = soup.find('div',{'class':'entry-content'})
+block = soup.find('div',{'class':'col-xs-12 col-sm-12 col-md-8 col-lg-9 left-column'})
 links = block.findAll('a', href=True)
 
 for link in links:
