@@ -94,7 +94,7 @@ data = []
 #### READ HTML 1.0
 
 html = urllib2.urlopen(url)
-soup = BeautifulSoup(html, "lxml")
+soup = BeautifulSoup(html)
 
 
 #### SCRAPE DATA
