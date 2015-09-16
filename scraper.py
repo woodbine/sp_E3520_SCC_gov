@@ -91,7 +91,7 @@ errors = 0
 data = []
 
 
-#### READ HTML 1.0
+#### READ HTML 1.1 - no "lxml"
 
 html = urllib2.urlopen(url)
 soup = BeautifulSoup(html)
