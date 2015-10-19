@@ -51,7 +51,7 @@ def validateURL(url):
         else:
             ext = os.path.splitext(url)[1]
         validURL = r.getcode() == 200
-        validFiletype = ext in ['.csv', '.xls', '.xlsx']
+        validFiletype = ext.lower() in ['.csv', '.xls', '.xlsx']
         return validURL, validFiletype
     except:
         print ("Error validating URL.")
@@ -94,7 +94,7 @@ data = []
 #### READ HTML 1.1 - no "lxml"
 
 html = urllib2.urlopen(url)
-soup = BeautifulSoup(html)
+soup = BeautifulSoup(html, 'lxml')
 
 
 #### SCRAPE DATA
@@ -110,12 +110,13 @@ for link in links:
     if '.csv' in url:
         title = link.encode_contents(formatter='html').replace('&nbsp;',' ') #  gets rid of erroneous &nbsp; chars
         title = title.upper().strip()
-        # create the right strings for the new filename
+         # create the right strings for the new filename
         csvYr = title.split(' ')[0]
         csvMth = title.split(' ')[1][:3]
+        if 'PART' in title:
+            csvYr = '2015'
+            csvMth = 'AUG'
         csvMth = convert_mth_strings(csvMth)
-        filename = entity_id + "_" + csvYr + "_" + csvMth + ".csv"
-        todays_date = str(datetime.now())
         data.append([csvYr, csvMth, url])
 
 
