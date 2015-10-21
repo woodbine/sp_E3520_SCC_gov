@@ -98,15 +98,17 @@ soup = BeautifulSoup(html, 'lxml')
 
 
 #### SCRAPE DATA
+import re
 
 block = soup.find('div',{'class':'col-xs-12 col-sm-12 col-md-8 col-lg-9 left-column'})
-links = block.findAll('a', href=True)
+links = block.find(text=re.compile('Pensions transactions')).find_all_previous('a')
 
 for link in links:
     url = link['href']
     if 'http' not in url:
         url = 'http://www.suffolk.gov.uk/' + url
     url = url.replace(' ','%20')
+
     if '.csv' in url:
         title = link.encode_contents(formatter='html').replace('&nbsp;',' ') #  gets rid of erroneous &nbsp; chars
         title = title.upper().strip()
