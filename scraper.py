@@ -94,7 +94,7 @@ data = []
 #### READ HTML 1.1 - no "lxml"
 
 html = urllib2.urlopen(url)
-soup = BeautifulSoup(html, 'lxml')
+soup = BeautifulSoup(html, 'html.parser')
 
 
 #### SCRAPE DATA
